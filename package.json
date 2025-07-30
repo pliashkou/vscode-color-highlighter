@@ -2,11 +2,12 @@
   "name": "vscode-color-highlighter",
   "displayName": "Code Color Highlighter",
   "description": "Highlight code with configurable colors",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "engines": {
-    "vscode": "^1.102.0"
+    "vscode": "^1.95.0"
   },
   "publisher": "pliashkou",
+  "icon": "images/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/pliashkou/vscode-color-highlighter"
@@ -161,7 +162,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.102.0",
+    "@types/vscode": "^1.95.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.31.1",

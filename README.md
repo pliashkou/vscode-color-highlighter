@@ -1,3 +1,5 @@
+
+
 # Code Highlighter
 
 A VSCode extension that allows you to highlight code with different colors using keyboard shortcuts. Perfect for marking important code sections, todos, or organizing your thoughts while reading code.
@@ -87,14 +89,3 @@ Colors should be in hex format with alpha channel (e.g., `#ff000040` for semi-tr
 | `Cmd+K 8` | Highlight with color 8 |
 | `Cmd+K 9` | Highlight with color 9 |
 | `Cmd+K 0` | Clear highlight at selection |
-
-## Release Notes
-
-### 1.0.0
-
-Initial release with:
-- Keyboard-driven highlighting (Cmd+K + number keys)
-- Smart partial highlight clearing
-- Persistent highlights across file close/open
-- Configurable colors
-- Dynamic highlight adjustment during text editing

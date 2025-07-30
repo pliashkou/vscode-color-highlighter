@@ -1,0 +1,4 @@
+dist
+.claude
+.vscode
+node_modules

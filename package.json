@@ -1,0 +1,172 @@
+{
+  "name": "vscode-color-highlighter",
+  "displayName": "Code Color Highlighter",
+  "description": "Highlight code with configurable colors",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "publisher": "pliashkou",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeHighlighter.clearHighlights",
+        "title": "Clear All Highlights",
+        "category": "Code Highlighter"
+      },
+      {
+        "command": "codeHighlighter.clearHighlightAtSelection",
+        "title": "Clear Highlight at Selection",
+        "category": "Code Highlighter"
+      },
+      {
+        "command": "codeHighlighter.highlight1",
+        "title": "Highlight with Color 1"
+      },
+      {
+        "command": "codeHighlighter.highlight2",
+        "title": "Highlight with Color 2"
+      },
+      {
+        "command": "codeHighlighter.highlight3",
+        "title": "Highlight with Color 3"
+      },
+      {
+        "command": "codeHighlighter.highlight4",
+        "title": "Highlight with Color 4"
+      },
+      {
+        "command": "codeHighlighter.highlight5",
+        "title": "Highlight with Color 5"
+      },
+      {
+        "command": "codeHighlighter.highlight6",
+        "title": "Highlight with Color 6"
+      },
+      {
+        "command": "codeHighlighter.highlight7",
+        "title": "Highlight with Color 7"
+      },
+      {
+        "command": "codeHighlighter.highlight8",
+        "title": "Highlight with Color 8"
+      },
+      {
+        "command": "codeHighlighter.highlight9",
+        "title": "Highlight with Color 9"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "codeHighlighter.highlight1",
+        "key": "cmd+k 1",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight2",
+        "key": "cmd+k 2",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight3",
+        "key": "cmd+k 3",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight4",
+        "key": "cmd+k 4",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight5",
+        "key": "cmd+k 5",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight6",
+        "key": "cmd+k 6",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight7",
+        "key": "cmd+k 7",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight8",
+        "key": "cmd+k 8",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.highlight9",
+        "key": "cmd+k 9",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeHighlighter.clearHighlightAtSelection",
+        "key": "cmd+k 0",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codeHighlighter.clearHighlights",
+          "group": "1_modification",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Code Highlighter",
+      "properties": {
+        "codeHighlighter.colors": {
+          "type": "array",
+          "default": [
+            "#ffeb3b40",
+            "#4caf5040",
+            "#2196f340",
+            "#ff572240",
+            "#9c27b040",
+            "#ff980040"
+          ],
+          "description": "Array of colors to use for highlighting (with alpha channel)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.102.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "esbuild": "^0.25.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}

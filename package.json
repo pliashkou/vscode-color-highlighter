@@ -2,7 +2,7 @@
   "name": "vscode-color-highlighter",
   "displayName": "Code Color Highlighter",
   "description": "Highlight code with configurable colors",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "vscode": "^1.95.0"
   },

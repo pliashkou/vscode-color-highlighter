@@ -154,6 +154,64 @@ class CodeHighlighter {
 			this.highlights.set(docKey, []);
 		}
 
+		const highlights = this.highlights.get(docKey)!;
+		
+		// First, handle any existing highlights that overlap with the selection
+		const highlightsToModify: { index: number; highlight: HighlightRange }[] = [];
+		const highlightsToRemove: number[] = [];
+
+		for (let i = 0; i < highlights.length; i++) {
+			const highlight = highlights[i];
+			const intersection = highlight.range.intersection(selection);
+			
+			if (intersection) {
+				highlightsToModify.push({ index: i, highlight });
+			}
+		}
+
+		// Process overlapping highlights (remove intersecting parts, keep non-intersecting parts)
+		for (let i = highlightsToModify.length - 1; i >= 0; i--) {
+			const { index, highlight } = highlightsToModify[i];
+			const originalRange = highlight.range;
+			const selectionRange = selection;
+			
+			highlight.decoration.dispose();
+			highlights.splice(index, 1);
+
+			// Keep the part before the selection (if any)
+			const beforeStart = originalRange.start;
+			const beforeEnd = selectionRange.start;
+			if (beforeStart.isBefore(beforeEnd)) {
+				const beforeDecoration = vscode.window.createTextEditorDecorationType({
+					backgroundColor: highlight.color,
+					isWholeLine: false
+				});
+				const beforeHighlight: HighlightRange = {
+					range: new vscode.Range(beforeStart, beforeEnd),
+					color: highlight.color,
+					decoration: beforeDecoration
+				};
+				highlights.splice(index, 0, beforeHighlight);
+			}
+
+			// Keep the part after the selection (if any)
+			const afterStart = selectionRange.end;
+			const afterEnd = originalRange.end;
+			if (afterStart.isBefore(afterEnd)) {
+				const afterDecoration = vscode.window.createTextEditorDecorationType({
+					backgroundColor: highlight.color,
+					isWholeLine: false
+				});
+				const afterHighlight: HighlightRange = {
+					range: new vscode.Range(afterStart, afterEnd),
+					color: highlight.color,
+					decoration: afterDecoration
+				};
+				highlights.push(afterHighlight);
+			}
+		}
+
+		// Now add the new highlight
 		const decorationType = vscode.window.createTextEditorDecorationType({
 			backgroundColor: color,
 			isWholeLine: false
@@ -165,9 +223,10 @@ class CodeHighlighter {
 			decoration: decorationType
 		};
 
-		this.highlights.get(docKey)!.push(highlight);
-		editor.setDecorations(decorationType, [highlight.range]);
+		highlights.push(highlight);
+		
 		this.saveHighlightsForDocument(docKey);
+		this.refreshHighlights(editor);
 	}
 
 	private adjustHighlights(event: vscode.TextDocumentChangeEvent) {
@@ -270,7 +329,7 @@ class CodeHighlighter {
 	}
 
 	private loadStoredHighlights() {
-		const storedHighlights = this.context.workspaceState.get<Record<string, StoredHighlight[]>>('codeHighlighter.highlights', {});
+		const storedHighlights = this.context.globalState.get<Record<string, StoredHighlight[]>>('codeHighlighter.highlights', {});
 		
 		for (const [docKey, highlights] of Object.entries(storedHighlights)) {
 			if (highlights && highlights.length > 0) {
@@ -281,7 +340,7 @@ class CodeHighlighter {
 
 	private loadHighlightsForDocument(editor: vscode.TextEditor) {
 		const docKey = this.getDocumentKey(editor.document);
-		const storedHighlights = this.context.workspaceState.get<Record<string, StoredHighlight[]>>('codeHighlighter.highlights', {});
+		const storedHighlights = this.context.globalState.get<Record<string, StoredHighlight[]>>('codeHighlighter.highlights', {});
 		const highlights = storedHighlights[docKey];
 		
 		if (!highlights || highlights.length === 0) {
@@ -321,7 +380,7 @@ class CodeHighlighter {
 	}
 
 	private saveHighlightsForDocument(docKey: string) {
-		const storedHighlights = this.context.workspaceState.get<Record<string, StoredHighlight[]>>('codeHighlighter.highlights', {});
+		const storedHighlights = this.context.globalState.get<Record<string, StoredHighlight[]>>('codeHighlighter.highlights', {});
 		
 		const highlights = this.highlights.get(docKey);
 		if (!highlights || highlights.length === 0) {
@@ -336,7 +395,7 @@ class CodeHighlighter {
 			}));
 		}
 
-		this.context.workspaceState.update('codeHighlighter.highlights', storedHighlights);
+		this.context.globalState.update('codeHighlighter.highlights', storedHighlights);
 	}
 
 	getColorPicker(): ColorPickerTooltip {

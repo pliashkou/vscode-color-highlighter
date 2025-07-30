@@ -17,10 +17,10 @@ A VSCode extension that allows you to highlight code with different colors using
 ### Highlighting Text
 1. Select the text you want to highlight
 2. Press `Cmd+[1-9]` to apply a color:
-   - `Cmd+1` - Yellow highlight
-   - `Cmd+2` - Green highlight  
-   - `Cmd+3` - Blue highlight
-   - `Cmd+4` - Red highlight
+   - `Cmd+1` - Green highlight
+   - `Cmd+2` - Red highlight  
+   - `Cmd+3` - Yellow highlight
+   - `Cmd+4` - Blue highlight
    - `Cmd+5` - Purple highlight
    - `Cmd+6` - Orange highlight
    - `Cmd+7-9` - Additional colors (if configured)

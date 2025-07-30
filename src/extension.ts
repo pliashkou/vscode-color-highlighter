@@ -27,6 +27,7 @@ class CodeHighlighter {
 		this.colorPicker = new ColorPickerTooltip(context);
 		this.setupEventHandlers();
 		this.loadStoredHighlights();
+		this.loadHighlightsForVisibleEditors();
 	}
 
 	private setupEventHandlers() {
@@ -335,6 +336,18 @@ class CodeHighlighter {
 			if (highlights && highlights.length > 0) {
 				this.highlights.set(docKey, []);
 			}
+		}
+	}
+
+	private loadHighlightsForVisibleEditors() {
+		// Load highlights for all currently visible editors
+		vscode.window.visibleTextEditors.forEach(editor => {
+			this.loadHighlightsForDocument(editor);
+		});
+
+		// Also load for the active editor if it exists
+		if (vscode.window.activeTextEditor) {
+			this.loadHighlightsForDocument(vscode.window.activeTextEditor);
 		}
 	}
 

@@ -6,7 +6,7 @@ A VSCode extension that allows you to highlight code with different colors using
 
 ## Features
 
-- **Fast keyboard-driven highlighting**: Use `Cmd+K` followed by number keys 1-9 to instantly highlight selected text
+- **Fast keyboard-driven highlighting**: Use `Cmd+[1-9]` to instantly highlight selected text
 - **Smart partial clearing**: Remove only selected portions of highlights while keeping the rest intact
 - **Persistent highlights**: Your highlights are saved and restored when files are reopened
 - **Configurable colors**: Customize the highlight colors in your VSCode settings
@@ -16,21 +16,21 @@ A VSCode extension that allows you to highlight code with different colors using
 
 ### Highlighting Text
 1. Select the text you want to highlight
-2. Press `Cmd+K` followed by a number key (1-9) to apply a color:
-   - `Cmd+K 1` - Yellow highlight
-   - `Cmd+K 2` - Green highlight  
-   - `Cmd+K 3` - Blue highlight
-   - `Cmd+K 4` - Red highlight
-   - `Cmd+K 5` - Purple highlight
-   - `Cmd+K 6` - Orange highlight
-   - `Cmd+K 7-9` - Additional colors (if configured)
+2. Press `Cmd+[1-9]` to apply a color:
+   - `Cmd+1` - Yellow highlight
+   - `Cmd+2` - Green highlight  
+   - `Cmd+3` - Blue highlight
+   - `Cmd+4` - Red highlight
+   - `Cmd+5` - Purple highlight
+   - `Cmd+6` - Orange highlight
+   - `Cmd+7-9` - Additional colors (if configured)
 
 ### Clearing Highlights
-- `Cmd+K 0` - Clear highlight from selected text (smart partial removal)
+- `Cmd+0` - Clear highlight from selected text (smart partial removal)
 - Command Palette: "Clear All Highlights" - Remove all highlights from current file
 
 ### Smart Partial Clearing
-When you select part of a highlighted text and press `Cmd+K 0`:
+When you select part of a highlighted text and press `Cmd+0`:
 - Only the selected portion gets unhighlighted
 - If you select the middle, it splits the highlight into two parts
 - If you select the beginning/end, it trims that portion
@@ -38,7 +38,7 @@ When you select part of a highlighted text and press `Cmd+K 0`:
 **Example:**
 - Highlight: `function myFunction()`
 - Select: `Function` (middle part)
-- Press `Cmd+K 0`
+- Press `Cmd+0`
 - Result: `function my` and `()` remain highlighted, `Function` is cleared
 
 ## Extension Settings
@@ -79,13 +79,66 @@ Colors should be in hex format with alpha channel (e.g., `#ff000040` for semi-tr
 
 | Shortcut | Action |
 |----------|--------|
-| `Cmd+K 1` | Highlight with color 1 |
-| `Cmd+K 2` | Highlight with color 2 |
-| `Cmd+K 3` | Highlight with color 3 |
-| `Cmd+K 4` | Highlight with color 4 |
-| `Cmd+K 5` | Highlight with color 5 |
-| `Cmd+K 6` | Highlight with color 6 |
-| `Cmd+K 7` | Highlight with color 7 |
-| `Cmd+K 8` | Highlight with color 8 |
-| `Cmd+K 9` | Highlight with color 9 |
-| `Cmd+K 0` | Clear highlight at selection |
+| `Cmd+1` | Highlight with color 1 |
+| `Cmd+2` | Highlight with color 2 |
+| `Cmd+3` | Highlight with color 3 |
+| `Cmd+4` | Highlight with color 4 |
+| `Cmd+5` | Highlight with color 5 |
+| `Cmd+6` | Highlight with color 6 |
+| `Cmd+7` | Highlight with color 7 |
+| `Cmd+8` | Highlight with color 8 |
+| `Cmd+9` | Highlight with color 9 |
+| `Cmd+0` | Clear highlight at selection |
+
+## Customizing Keyboard Shortcuts
+
+You can customize the keyboard shortcuts to your preference using VSCode's built-in keybinding editor.
+
+### Method 1: Using the GUI (Recommended)
+1. Open VSCode Settings (`Cmd+,` on macOS, `Ctrl+,` on Windows/Linux)
+2. Click on "Keyboard Shortcuts" or press `Cmd+K Cmd+S` (on macOS) / `Ctrl+K Ctrl+S` (on Windows/Linux)
+3. Search for "Code Highlighter" or "codeHighlighter"
+4. Click the pencil icon next to any command to reassign its shortcut
+5. Press your desired key combination and hit Enter
+
+### Method 2: Using keybindings.json
+1. Open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
+2. Type "Preferences: Open Keyboard Shortcuts (JSON)" and select it
+3. Add your custom keybindings:
+
+```json
+{
+  "key": "your-preferred-key",
+  "command": "codeHighlighter.highlight1",
+  "when": "editorTextFocus"
+}
+```
+
+### Available Commands
+- `codeHighlighter.highlight1` - Highlight with color 1
+- `codeHighlighter.highlight2` - Highlight with color 2
+- `codeHighlighter.highlight3` - Highlight with color 3
+- `codeHighlighter.highlight4` - Highlight with color 4
+- `codeHighlighter.highlight5` - Highlight with color 5
+- `codeHighlighter.highlight6` - Highlight with color 6
+- `codeHighlighter.highlight7` - Highlight with color 7
+- `codeHighlighter.highlight8` - Highlight with color 8
+- `codeHighlighter.highlight9` - Highlight with color 9
+- `codeHighlighter.clearHighlightAtSelection` - Clear highlight at selection
+- `codeHighlighter.clearHighlights` - Clear all highlights in file
+
+### Example Custom Keybindings
+```json
+[
+  {
+    "key": "ctrl+shift+1",
+    "command": "codeHighlighter.highlight1",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+0",
+    "command": "codeHighlighter.clearHighlightAtSelection", 
+    "when": "editorTextFocus"
+  }
+]
+```

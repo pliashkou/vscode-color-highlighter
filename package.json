@@ -2,7 +2,7 @@
   "name": "vscode-color-highlighter",
   "displayName": "Code Color Highlighter",
   "description": "Highlight code with configurable colors",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -71,52 +71,52 @@
     "keybindings": [
       {
         "command": "codeHighlighter.highlight1",
-        "key": "cmd+k 1",
+        "key": "cmd+1",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight2",
-        "key": "cmd+k 2",
+        "key": "cmd+2",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight3",
-        "key": "cmd+k 3",
+        "key": "cmd+3",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight4",
-        "key": "cmd+k 4",
+        "key": "cmd+4",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight5",
-        "key": "cmd+k 5",
+        "key": "cmd+5",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight6",
-        "key": "cmd+k 6",
+        "key": "cmd+6",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight7",
-        "key": "cmd+k 7",
+        "key": "cmd+7",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight8",
-        "key": "cmd+k 8",
+        "key": "cmd+8",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.highlight9",
-        "key": "cmd+k 9",
+        "key": "cmd+9",
         "when": "editorTextFocus"
       },
       {
         "command": "codeHighlighter.clearHighlightAtSelection",
-        "key": "cmd+k 0",
+        "key": "cmd+0",
         "when": "editorTextFocus"
       }
     ],

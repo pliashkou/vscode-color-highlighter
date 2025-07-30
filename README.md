@@ -1,6 +1,6 @@
-
-
 # Code Highlighter
+
+![](images/screen.gif)
 
 A VSCode extension that allows you to highlight code with different colors using keyboard shortcuts. Perfect for marking important code sections, todos, or organizing your thoughts while reading code.
 
@@ -51,10 +51,10 @@ This extension contributes the following settings:
 ```json
 {
   "codeHighlighter.colors": [
-    "#ffeb3b40",  // Yellow
     "#4caf5040",  // Green
-    "#2196f340",  // Blue
     "#ff572240",  // Red
+    "#ffeb3b40",  // Yellow
+    "#2196f340",  // Blue
     "#9c27b040",  // Purple
     "#ff980040"   // Orange
   ]

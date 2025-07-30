@@ -51,10 +51,10 @@ class CodeHighlighter {
 	private getConfiguredColors(): string[] {
 		const config = vscode.workspace.getConfiguration('codeHighlighter');
 		return config.get<string[]>('colors', [
-			'#ffeb3b40',
 			'#4caf5040',
-			'#2196f340',
 			'#ff572240',
+			'#ffeb3b40',
+			'#2196f340',
 			'#9c27b040',
 			'#ff980040'
 		]);
